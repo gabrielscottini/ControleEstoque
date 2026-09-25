@@ -1,41 +1,57 @@
-import java.util.list;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Estoque {
-    List<Produto> produtos;
+    List<Produto> produtos = new ArrayList<>();
 
-    public void listarProdutos() {
-        for (Produto produto : produtos) {
-            System.out.println(produto.toString());
+    public void cadastrarProduto(Produto produto){
+        produtos.add(produto);
+    }
+
+    public void listarProdutos(){
+        if (!produtos.isEmpty()) {
+            for (Produto produto : produtos) {
+                System.out.println(produto);
+            }
+        } else {
+            System.out.println("Nenhum produto cadastrado.\n\n\n");
         }
     }
 
-    public void buscaProdutos(int id) {
-        for (Produto produto : produtos) {
-            if (produto.getId() == id) {
-                System.out.println(produto());
-          return;
+    public void cadastrarProduto(int id, String nome, double preco, int quantidadeEstoque){
+        Produto produto = new Produto(id, nome, preco, quantidadeEstoque);
+        produtos.add(produto);
+    }
+
+    public void buscaProduto(int id){
+        for(Produto produto : produtos){
+            if(produto.getId() == id){
+                System.out.println(produto);
+                return;
             }
         }
         System.out.println("Produto não encontrado.");
     }
-}
-public void entrada(int id, int quantidade) {
-    for (Produto produto : produtos) {
-        if (produto.getId() == id) {
-            produto.adicionar(quantidade);
-            System.out.println("nova quantidade: " + produto.getQuantidadedeEstoque());
-            return;
+
+    public void entrada(int id, int quantidade) {
+        for(Produto produto : produtos){
+            if(produto.getId() == id){
+                produto.adicionar(quantidade);
+                System.out.println("Nova quantidade: " + produto.getQuantidadeEstoque());
+                return;
+            }
         }
+        System.out.println("Produto não encontrado.");
     }
-    System.out.println("Produto não encontrado.");
-}
-public void saida(int id, int quantidade) {
-    for (Produto produto : produtos) {
-        if (produto.getId() == id) {
-            produto.remover(quantidade);
-            System.out.println("nova quantidade: " + produto.getQuantidadedeEstoque());
-            return;
+
+    public void saida(int id, int quantidade) {
+        for(Produto produto : produtos){
+            if(produto.getId() == id){
+                produto.remover(quantidade);
+                System.out.println("Nova quantidade: " + produto.getQuantidadeEstoque());
+                return;
+            }
         }
+        System.out.println("Produto não encontrado.");
     }
-    System.out.println("Produto não encontrado.");
 }
